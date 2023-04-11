@@ -29,22 +29,3 @@
       <%= f.submit 'Create Book' %>
     <% end %>
     </div>
-
-    <div>
-     <h2>Books</h2>
-     <table>
-      <tr>
-        <th>Title</th>
-        <th>Opinion</th>
-      </tr>
-       <% @books.each do |book|%>
-         <tr>
-          <td><%= image_tag current_user.get_profile_image(100,100) %></td>
-          <td><%= link_to(book.title,book) %></td>
-          <td><%= book.body %></td>
-         </tr>
-       <% end %>
-      </table>
-
-
-
