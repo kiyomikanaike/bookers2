@@ -1,4 +1,15 @@
-
+<div class="container px-5 px-sm-0">
+ <% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+ <div class="row">
+  
+  <div class="col-md-3">
  <h2>User info</h2>
    <%= image_tag current_user.get_profile_image(100,100) %>
    <table>
@@ -13,11 +24,14 @@
     </tr>
    </tbody>
    </table>
-   <div>
-    <p><%= link_to "edit",edit_user_path(@user.id)%></p>
-
+   <div class="row">
+     <a>
+     <%= link_to edit_user_path(@user.id),class: "btn btn-secondary btn-block" do %>
+     <i class="fas fa-user-cog"></i>
+     <% end %>
+     </a>
    </div>
-   <h1>New book</h1>
+   <h2 class="me-3">New book</h2>
     <%= form_with model: @book do |f| %>
 
      <h4>Title</h4>
@@ -30,7 +44,7 @@
     <% end %>
     </div>
 
-    <div>
+    <div class="col-md-8 offset-md-1">
      <h2>Books</h2>
      <table>
       <tr>
@@ -39,12 +53,19 @@
       </tr>
        <% @books.each do |book|%>
          <tr>
-          <td><%= image_tag current_user.get_profile_image(100,100) %></td>
+          <td>
+          <%= link_to user_path(book.user) do %>
+          <span><%= image_tag book.user.get_profile_image(100,100) %></span>
+          <% end %>
+          </td>
           <td><%= link_to(book.title,book) %></td>
           <td><%= book.body %></td>
          </tr>
        <% end %>
       </table>
+   </div>
+ </div>
+</div>
 
 
 
